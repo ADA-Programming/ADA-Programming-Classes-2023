@@ -167,21 +167,9 @@ george.play_song('Don\'t Bother Me', 'Thank you!', 'Thanks!', rhythm_count='One,
 # - o.__dir__
 # - o.__dict__
 
-print(False + 1)
-print(True.__int__())
-print((1).__class__)
-print((1).__class__.__name__)
-print((1).__dir__())
-print(object.__dict__)
-print()
-
-print(dir(1))
-print(object.__str__(george))
-
 
 #%%
 # Demonstrate object data fields and methods for Musician objects
-print(george.__dict__)
 
 
 #%%
@@ -228,18 +216,16 @@ class Singer(Musician):
     """
 
     # # Version 1 - no multiple inheritance
-    # def __init__(self, name, vocals, is_band_member=True):
+    # def __init__(self, name, vocals, is_band_member=True, ):
     #     super().__init__(name, is_band_member)
     #     self.vocals = vocals if isinstance(vocals, Vocals) else None
 
     # Version 2 - with multiple inheritance
     def __init__(self, vocals=Vocals.LEAD_VOCALS, **kwargs):
-        super().__init__(**kwargs)
-        self.vocals = vocals if isinstance(vocals, Vocals) else None
+        pass
 
     def __str__(self):
-        v = f', {self.vocals.value}' if isinstance(self.vocals, Vocals) else ''
-        return super().__str__() + v
+        pass
 
     def __eq__(self, other):
         pass
@@ -248,8 +234,6 @@ class Singer(Musician):
         # if type(other) is type(self):
         #     return self.__dict__ == other.__dict__
         # return False
-
-        return self.__dict__ == other.__dict__ if isinstance(other, Singer) else False
 
     def play(self, song_title, *args, **kwargs):
         """Overrides the play() method from superclass.
@@ -259,13 +243,11 @@ class Singer(Musician):
             <singer>.play(song_title, *['Thank you!', 'You're wonderful!], love='We love you!')
         """
 
-        return super().play(song_title, *args, **kwargs) + '\nYeah!'
-
     def what_do_you_do(self):
         """Just a simple method to describe the concept of singer.
         """
 
-        return f'I am {self.name} and I sing songs.'
+        pass
 
 
 #%%
@@ -275,20 +257,17 @@ class Songwriter(Musician):
     who writes songs and plays an instrument.
     """
 
-    # Version 1 - no multiple inheritance
-
+    # # Version 1 - no multiple inheritance
     # def __init__(self, name, instrument, is_band_member=True):
     #     super().__init__(name, is_band_member)
     #     self.instrument = instrument if isinstance(instrument, Instrument) else None
 
     # Version 2 - with multiple inheritance
     def __init__(self, instrument=Instrument.RHYTHM_GUITAR, **kwargs):
-        super().__init__(**kwargs)
-        self.instrument = instrument if isinstance(instrument, Instrument) else None
+        pass
 
     def __str__(self):
-        v = f', {self.instrument.value}' if isinstance(self.instrument, Instrument) else ''
-        return super().__str__() + v
+        pass
 
     def __eq__(self, other):
         pass
@@ -298,13 +277,9 @@ class Songwriter(Musician):
         #     return self.__dict__ == other.__dict__
         # return False
 
-        return self.__dict__ == other.__dict__ if isinstance(other, Songwriter) else False
-
     def what_do_you_do(self):
         """Just a simple method to describe the concept of songwriter.
         """
-
-        return f'I am {self.name} and I write songs.'
 
 
 #%%
@@ -318,19 +293,18 @@ class Songwriter(Musician):
 #%%
 # Demonstrate inheritance
 # Version 1 - no multiple inheritance
-george = Singer(name='George Harrison', vocals=Vocals.LEAD_VOCALS)
-print(george)
-print(Singer.__mro__)
-print(george == Singer(name='George Harrison', vocals=Vocals.LEAD_VOCALS))
-print()
-john = Songwriter(name='John Lennon', instrument=Instrument.RHYTHM_GUITAR)
-print(john)
-print(john == Songwriter(name='John Lennon', instrument=Instrument.RHYTHM_GUITAR))
-print(john.what_do_you_do())
+# george = Singer('George Harrison', Vocals.LEAD_VOCALS)
+# print(george)
+# print(Singer.__mro__)
+# print(george == Singer('George Harrison', Vocals.LEAD_VOCALS))
+# print()
+# john = Songwriter('John Lennon', Instrument.RHYTHM_GUITAR)
+# print(john)
+# print(john == Songwriter('John Lennon', Instrument.RHYTHM_GUITAR))
+# print(john.what_do_you_do())
 
 #%%
 # Demonstrate method overriding
-print(george.play('While My Guitar Gently Weeps'))
 
 
 #%%
@@ -344,10 +318,10 @@ class SingerSongwriter(Singer, Songwriter):
     """
 
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        pass
 
     def __str__(self):
-        return super().__str__()
+        pass
 
     def __eq__(self, other):
         pass
@@ -357,16 +331,14 @@ class SingerSongwriter(Singer, Songwriter):
         #     return self.__dict__ == other.__dict__
         # return False
 
-        return self.__dict__ == other.__dict__ if isinstance(other, SingerSongwriter) else False
-
     def tell(self):
         """What if multiple inheritance requires calling a method with same method name
         from different paths (i.e., from different base classes)?
         E.g., class C(A, B) and both A and B implement a method with the same name m() in their own ways).
         In that case, call A's version like A.m(self), and B's version like B.m(self).
         """
-        print(Singer.what_do_you_do(self))
-        print(Songwriter.what_do_you_do(self))
+        # print(Singer.what_do_you_do(self))
+        # print(Songwriter.what_do_you_do(self))
 
 
 #%%
@@ -378,17 +350,17 @@ class SingerSongwriter(Singer, Songwriter):
 # Demonstrate inheritance
 # Version 2 - with multiple inheritance
 
-print(SingerSongwriter.__mro__)
-print()
-bob = SingerSongwriter(name='Bob Dylan', vocals=Vocals.LEAD_VOCALS,
-                       instrument=Instrument.RHYTHM_GUITAR, is_band_member=False)
-print(bob)
-print()
-print(bob == SingerSongwriter(name='Bob Dylan', vocals=Vocals.LEAD_VOCALS,
-                              instrument=Instrument.RHYTHM_GUITAR, is_band_member=False))
-print()
-
-bob.tell()
+# print(SingerSongwriter.__mro__)
+# print()
+# bob = SingerSongwriter(name='Bob Dylan', vocals=Vocals.LEAD_VOCALS,
+#                        instrument=Instrument.RHYTHM_GUITAR, is_band_member=False)
+# print(bob)
+# # print()
+# # print(bob == SingerSongwriter(name='Bob Dylan', vocals=Vocals.LEAD_VOCALS,
+# #                               instrument=Instrument.RHYTHM_GUITAR, is_band_member=False))
+# print()
+#
+# bob.tell()
 
 #%%
 # Demonstrate JSON encoding/decoding of simple data types.
@@ -415,15 +387,8 @@ bob.tell()
 #%%
 # Single object
 from json_tricks import loads, dumps
-george_json = dumps(george, indent=4)
-print(george_json)
-print(george == loads(george_json))
-
 
 #%%
 # List of objects
 from json_tricks import loads, dumps
-the_beatles = [johnLennon, paulMcCartney, georgeHarrison, ringoStarr]
-the_beatles_json = dumps(the_beatles, indent=4)
-print(the_beatles_json)
-print(the_beatles == loads(the_beatles_json))
+
