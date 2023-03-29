@@ -167,6 +167,14 @@ george.play_song('Don\'t Bother Me', 'Thank you!', 'Thanks!', rhythm_count='One,
 # - o.__dir__
 # - o.__dict__
 
+# print(True + 1)
+# print(True.__int__())
+# print((1).__class__)
+# print((1).__class__.__name__)
+# print((1).__dir__())
+# print((1).__sizeof__())
+# print(object.__dict__)
+
 
 #%%
 # Demonstrate object data fields and methods for Musician objects
