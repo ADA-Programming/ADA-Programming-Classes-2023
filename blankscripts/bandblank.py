@@ -179,6 +179,7 @@ class BandNameError(BandError):
     """
 
     def __init__(self, name):
+        # Start with Exception.__init__(self, f'BandNameError: \'{name}\' ...'), and add self.name = name
         pass
 
 
